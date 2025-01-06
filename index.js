@@ -1,17 +1,18 @@
-const express=require("express")
-const app=express()
-const dotenv=require('dotenv')
-const path=require('path')
-const connectToDB = require("./config/database")
-const user=require("./routes/route")
-dotenv.config({path:path.join(__dirname,'config','config.env')})
+import express from 'express'
+import dotenv from 'dotenv'
+import path from 'path'
+import router from './routes/user.js'
+import ConnectToDB from './config/database.js'
 
-connectToDB()
+const app = express()
+dotenv.config({ path: path.join(process.cwd(), 'config', 'config.env') })
+
+ConnectToDB()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/',user)
+app.use('/api/', router)
 
 app.listen(process.env.PORT, () => {
-    console.log(`Server is running on port ${process.env.PORT} ...`);
-  });
+  console.log(`Server is running on port ${process.env.PORT} ...`);
+});
