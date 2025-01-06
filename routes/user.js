@@ -3,8 +3,8 @@ import { getsingleUser, getUser, postUser } from '../controllers/user.js';
 
 const router = express.Router();
 
-router.route('/post/user').post(postUser)
-router.route('/get/users').get(getUser)
-router.route('/get/user/:id').get(getsingleUser)
+router.post('/post/user', postUser)
+router.get('/get/users', getUser)
+router.get('/get/user/:id', getsingleUser)
 
 export default router;
